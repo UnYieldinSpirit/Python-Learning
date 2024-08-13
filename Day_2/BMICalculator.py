@@ -5,8 +5,10 @@ print(version)
 weight = float(input("Please enter your current weight (in lbs):\n"))
 height = float(input("Please enter your current height (in inches):\n"))
 
-bmi = (weight / (height ** 2)) * 703
-user_diagnosis = " "
+# BMI calcutions
+bmi = (weight / (height ** 2)) * 703 # 703 is the factor that must be multiplied by when using the imperial system.
+
+user_diagnosis = " " # holds the user's final diagnosis
 
 #if else statements to discover the users' status (under or overweight)
 if bmi <= 18.5:
@@ -18,4 +20,4 @@ elif bmi > 25 and bmi < 29.9:
 else:
     user_diagnosis = "obese"
 
-print("Your BMI is as follows: " + str(bmi) + "\n This means that you are: " + user_diagnosis)
+print(f"Your BMI is as follows: {bmi} \n This means that you are: {user_diagnosis}")
