@@ -38,3 +38,5 @@ print(sel_numbers)
 
 password # find a way to concatenate the segmented passwords together
 print(password)
+
+# for the hard part where the password has any order of numbers, put all of the lists into one list and then use random() with range() to specify which list is being referenced at certain times.
