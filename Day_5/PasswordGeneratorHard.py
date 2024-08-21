@@ -11,6 +11,10 @@ nr_letters = int(input("How many letters would you like in your password?\n"))
 nr_symbols = int(input("How many symbols would you like?\n"))
 nr_numbers = int(input("How many numbers would you like?\n"))
 
+# instantiates the list and string that will hold the shuffled password
+shuffled_pw = []
+password_shuffled = ""
+
 # variables that hold the characters randomly selected from the lists
 sel_numbers = ""
 sel_symbols = ""
@@ -36,3 +40,14 @@ while i != nr_numbers:
 # combines the selected characters to form the password
 password = sel_letters + sel_numbers + sel_symbols # find a way to concatenate the segmented passwords together
 print(password)
+
+# portion that handles the shuffling of the password so that the characters are not in a predefined order
+for characters in password:
+    shuffled_pw.append(characters)
+    
+random.shuffle(shuffled_pw)
+
+for characters in shuffled_pw:
+    password_shuffled += characters
+
+print(password_shuffled)
