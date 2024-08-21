@@ -16,23 +16,17 @@ sel_numbers = ""
 sel_symbols = ""
 sel_letters = ""
 
-i = 0 # while condition
+# for loop that handles the process of parsing the list to select a character that will be stored in the 'selected' variables
 
-# while loop that handles the process of parsing the list to select a character that will be stored in the 'selected' variables
-while i != nr_letters:
+for char in range(0, nr_letters):
     sel_letters += random.choice(letters)
-    i += 1
 
-i = 0 # reset while condition
-while i != nr_symbols:
+for char in range(0, nr_symbols):
     sel_symbols += random.choice(symbols)
-    i += 1
 
-i = 0 # reset while condition
-while i != nr_numbers:
+for char in range(0, nr_numbers):
     sel_numbers += random.choice(numbers)
-    i += 1
 
 # combines the selected characters to form the password
-password = sel_letters + sel_numbers + sel_symbols # find a way to concatenate the segmented passwords together
+password = sel_letters + sel_symbols + sel_numbers # find a way to concatenate the segmented passwords together
 print(password)
