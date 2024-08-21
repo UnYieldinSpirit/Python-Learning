@@ -4,10 +4,14 @@ letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
 numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 symbols = ['!', '@', '#', '$', '%', '(', ')', '*', '+']
 new_letters = []
+
 print("Welcome to the Password Generator!")
 nr_letters = int(input("How many letters would you like in your password?\n"))
 nr_symbols = int(input("How many symbols would you like?\n"))
 nr_numbers = int(input("How many numbers would you like?\n"))
+
+shuffled_pw = []
+password_shuffled = ""
 
 sel_numbers = ""
 sel_symbols = ""
@@ -31,7 +35,17 @@ while i != nr_numbers:
 password = sel_letters + sel_numbers + sel_symbols # find a way to concatenate the segmented passwords together
 print(password)
 
-# hard part, randomize the order of the characters
-
-for number in password:
+for characters in password:
+    shuffled_pw.append(characters)
     
+random.shuffle(shuffled_pw)
+
+for characters in shuffled_pw:
+    password_shuffled += characters
+
+print(shuffled_pw)
+print(password_shuffled)
+
+# hard part, randomize the order of the characters, use the random.shuffle() method
+
+# for number in password:
