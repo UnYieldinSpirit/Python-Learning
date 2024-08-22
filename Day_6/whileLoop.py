@@ -4,4 +4,6 @@ def countdown():
         print(test_condition)
         test_condition -= 1
 
+# while not loops exist as well
+
 countdown()
