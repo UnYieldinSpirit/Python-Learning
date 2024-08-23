@@ -1,6 +1,6 @@
 import random
 
-word_bank = ["peanut", "alphabet", "caramel", "gideon", "flabbergasted", "apple", "beanie", "hyperthermia", "summer", "rapper", "python", "hanger", "serendipity"]
+word_bank = ["peanut", "alphabet", "caramel", "gideon", "flabbergasted", "apple", "beanie", "hyperthermia", "summer", "rapper", "python", "hanger", "serendipity", "problematic", "charismatic", "stupendous", "aromatherapy", "gorgeous", "leprechaun", "idiosyncrasy", "cyanide", "organic", "agoraphobic"]
 comp_word = ""
 reveal_list = []
 comp_word_list = []
@@ -59,9 +59,9 @@ def reset_game(): # "global" allows the function the ability to interact with th
 while play_again == True:
     reset_game()
 
-    print(comp_word)
-    print(comp_word_list)
-    print(reveal_list)
+    # print(comp_word)
+    # print(comp_word_list)
+    # print(reveal_list)
 
     print(f"Welcome to Hangman! You get a total of {num_guesses} incorrect guesses before you lose...\nDuplicate guesses do not count! Good luck")
     main_counter = 0
@@ -69,8 +69,11 @@ while play_again == True:
         correct = False
         print(f"Number of guesses left: {num_guesses}")
 
+        if main_counter == 0:
+            print(f"{len(comp_word)}-letter word")
+        print(reveal_list)
+
         if main_counter != 0:
-            print(reveal_list)
             print(f"Here are all of the letters that you have already guessed:\n{guessed_letters}")
         
         user_guess = input("Guess a letter: ").lower()
