@@ -10,8 +10,10 @@ def encode(original_msg, shift):
     for char in original_msg:
         index_position = alphabet.index(char) # finds the letter in the text's alphabet position
         index_position += shift # creates the shift in the letter index position
-        if index_position > len(alphabet) - 1:
-            
+
+        while index_position > len(alphabet) - 1: # while the index_position is out of the bounds of the alphabet list...
+            index_position -= len(alphabet) # continuously subtracts the amount of the alphabet list until it is within the bounds of the 
+
         char = alphabet[index_position] # replaces the letter with the shifted letter
         final_msg += char # creates the encoded msg
     return final_msg
