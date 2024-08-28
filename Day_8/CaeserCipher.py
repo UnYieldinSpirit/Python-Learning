@@ -53,8 +53,9 @@ def casear(original_msg, shift, direction):
 
 try_again = True
 
+print(CaesarArt.logo)
+
 while try_again == True:
-    print(CaesarArt.logo)
     direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
     text = input("Type your message:\n").lower()
     shift = int(input("Type the shift number:\n"))
