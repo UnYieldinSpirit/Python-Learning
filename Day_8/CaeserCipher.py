@@ -27,12 +27,12 @@ def decode(original_msg, shift):
         final_msg += char # creates the decode msg
     return final_msg
 
-# maybe find the index number that the letter is and then replace that letter with one of an index higher. Compensate for going over the index as well.
-#.index()
+def casear(original_msg, shift, direction):  
+    if direction == "encode":
+        final_msg = encode(original_msg, shift)
+        print(f"Here is the encoded result: {final_msg}")
+    else:
+        final_msg = decode(original_msg, shift)
+        print(f"Here is the decoded result: {final_msg}")
 
-if direction == "encode":
-    final_msg = encode(text, shift)
-else:
-    final_msg = decode(text, shift)
-
-print(final_msg)
+casear(text, shift, direction)
