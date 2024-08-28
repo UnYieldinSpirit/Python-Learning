@@ -1,12 +1,7 @@
 import CaesarArt
-
-print(CaesarArt.logo)
 # program tasked with performing a caesar cipher on a message. ability to encrypt/decrypt
 
 alphabet= ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
 
 def encode(original_msg, shift):
     final_msg = ""
@@ -26,17 +21,29 @@ def encode(original_msg, shift):
 
 def decode(original_msg, shift):
     final_msg = ""
+    shift = -shift
     for char in original_msg:
         if char in alphabet:
             index_position = alphabet.index(char) # finds the letter in the text's alphabet position
-            index_position -= shift # creates the shift in the letter index position
+            index_position += shift # creates the shift in the letter index position
+
+            while index_position < -len(alphabet):
+                index_position += len(alphabet)
             char = alphabet[index_position] # replaces the letter with the shifted letter
             final_msg += char # creates the decode msg
         else:
             final_msg += char
     return final_msg
 
-def casear(original_msg, shift, direction):  
+def restart():
+    answer = input("Would you like to continue? ('y'/'n') ")
+    
+    if answer == 'y':
+        return True
+    else:
+        return False
+
+def casear(original_msg, shift, direction):
     if direction == "encode":
         final_msg = encode(original_msg, shift)
         print(f"Here is the encoded result: {final_msg}")
@@ -44,4 +51,15 @@ def casear(original_msg, shift, direction):
         final_msg = decode(original_msg, shift)
         print(f"Here is the decoded result: {final_msg}")
 
-casear(text, shift, direction)
+try_again = True
+
+while try_again == True:
+    print(CaesarArt.logo)
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
+
+    casear(text, shift, direction)
+    try_again = restart()
+
+print("Thanks for participating!")
