@@ -1,3 +1,5 @@
+import art
+
 def add(n1, n2):
     return n1 + n2
 
@@ -10,19 +12,42 @@ def multiply(n1, n2):
 def divide(n1, n2):
     return n1 / n2
 
+def result_print(op, n1, n2, result):
+    print(f"{n1} {op} {n2} = {result}")
+
 def operation_decision(op, n1, n2):
     if op == "+":
-        add(n1, n2)
+        result = add(n1, n2)
     elif op == "-":
-        subtract(n1, n2)
+        result = subtract(n1, n2)
     elif op == "*":
-        multiply(n1, n2)
-    elif op == "/"
-        divide(n1, n2)
+        result = multiply(n1, n2)
+    elif op == "/":
+        result = divide(n1, n2)
 
+    result_print(op, n1, n2, result)
+    return result
 
-first_num = int(input("What is the first number?\n"))
-operation = input("What operation would you like to execute?\n+\n*\n/\n-\n")
-second_num = int(input("What is the second number?\n"))
+final_result = 0
+proceed = False
+restart = True
+print(art.logo)
 
-operation_decision(operation)
+while restart == True:
+    if proceed == True:
+        first_num = final_result
+    else:
+        first_num = float(input("What is the first number?\n"))
+
+    operation = input("+\n*\n/\n-\nPick an operation: ")
+
+    second_num = float(input("What is the second number?\n"))
+
+    final_result = operation_decision(operation, first_num, second_num)
+
+    cont_calc = input(f"Type 'y' to continue calculating with {first_num}, or type 'n' to start a new calculation: ")
+
+    if cont_calc == "y":
+        proceed = True
+    else:
+        proceed = False
