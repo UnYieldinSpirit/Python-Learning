@@ -28,6 +28,13 @@ def operation_decision(op, n1, n2):
     result_print(op, n1, n2, result)
     return result
 
+operations = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide,
+}
+
 final_result = 0
 proceed = False
 restart = True
@@ -44,6 +51,8 @@ while restart == True:
     second_num = float(input("What is the second number?\n"))
 
     final_result = operation_decision(operation, first_num, second_num)
+    # final_result = operations[operation](first_num, second_num)
+    # alternative way to do it is to store the operators in the dict and then use the input as a means to call the dictionary entries into the created functions.
 
     cont_calc = input(f"Type 'y' to continue calculating with {first_num}, or type 'n' to start a new calculation: ")
 
