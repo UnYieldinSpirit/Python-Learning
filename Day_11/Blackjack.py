@@ -1,7 +1,7 @@
 import random
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10] # infinite deck, meaning that when a card is drawn, it is not removed from the card pool
 hands = {
-    "player": [3, 5, 6, 10],
+    "player": [],
     "computer": [],
 }
 
@@ -17,12 +17,16 @@ hands = {
 #     print(hands["player"][counter])
 #     counter += 1
 
-def p_deal():
+def p_deal(first_deal):
+    if first_deal == True:
+        hands["player"].append(random.choice(cards))   
     hands["player"].append(random.choice(cards))
     print("Player:")
     print(hands["player"])
 
-def comp_deal():
+def comp_deal(first_deal):
+    if first_deal == True:
+        hands["computer"].append(random.choice(cards))
     hands["computer"].append(random.choice(cards))
     print("Computer:")
     print(hands["computer"])
@@ -42,11 +46,10 @@ def check(name):
         total += char
     if total > 21:
         return True
-
-
-
+    
 p_over_21 = False
 comp_over_21 = False
 
 initiate_game()
-# while p_under_21 == False and comp_under_21 == False:
+while p_over_21 == False and comp_over_21 == False:
+    
