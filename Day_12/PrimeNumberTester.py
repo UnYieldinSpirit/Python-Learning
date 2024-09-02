@@ -10,4 +10,9 @@ def is_prime(num):
     print(f"Divisible by: {divisible_by}")
     return prime
 
-print(is_prime(int(input("Enter a number to test whether it is prime: "))))
+user_num = int(input("Enter a number to test if it is prime: "))
+
+if is_prime(user_num):
+    print(f"{user_num} is prime!")
+else:
+    print(f"{user_num} is not prime!")
