@@ -5,31 +5,40 @@ hands = {
     "computer": [],
 }
 
+def total(name):
+    total = 0
+    for char in hands[name]:
+        total += char
+    return total
+
 def p_deal(first_deal):
     if first_deal == True:
         hands["player"].append(random.choice(cards))   
     hands["player"].append(random.choice(cards))
-    print("Player:")
-    print(hands["player"])
+    if first_deal:
+        print("Player:")
+        print(f"{hands["player"]}  Total = {total("player")}")
 
 def comp_deal(first_deal):
     if first_deal == True:
         hands["computer"].append(random.choice(cards))
     hands["computer"].append(random.choice(cards))
-    print("Computer:")
-    print(hands["computer"])
+    if first_deal:
+        print("Computer:")
+        print(f"{hands["computer"]}  Total = {total("computer")}")
 
 def initiate_game():
     first_deal = True
     print("""Welcome to the BlackJack Table. The goal is to get as close as you can to 21 without exceeding. May the heart of the cards be with you.
-          Aces are 11 or 1, depending on if you are over 21 or not.
-          All face cards equal 10
-          The number cards are just number cards
+Aces are 11 or 1, depending on if you are over 21 or not.
+All face cards equal 10
+The number cards are just number cards
           """)
     hands["computer"] = []
     hands["player"] = []
-    comp_deal(first_deal)
     p_deal(first_deal)
+    comp_deal(first_deal)
+
 
 def ace_convert(name): # used to change any number whose value is 11 to 1 if over 21
     index = hands[name].index(11)
@@ -44,8 +53,12 @@ def check(name):
         total -= 10
         ace_convert(name)
     if total > 21:
+        print(f"{name}:")
+        print(f"{hands[name]}  Total = {total}")
         return True
     else:
+        print(f"{name}:")
+        print(f"{hands[name]}  Total = {total}")
         return False
 
 def user_choice():
@@ -57,35 +70,45 @@ def user_choice():
     else:
         return user
 
-def total(name):
-    total = 0
-    for char in hands[name]:
-        total += char
-    return total
+def declare_winner():
+    player = total("player")
+    computer = total("computer")
+    if computer > player:
+        print("You Lose!")
+    elif computer == player:
+        print("You Lose! The House Always Wins!")
+    end = True
+    return end
 
+game_over = False
 p_over_21 = False
 comp_over_21 = False
+comp_win = False
+
 initiate_game()
-while p_over_21 == False and comp_over_21 == False:
+while (p_over_21 == False and comp_over_21 == False) and not game_over:
     user = user_choice()
     if user == "h":
         p_deal(False)
-        comp_deal(False)
+        if total("computer") < 18:
+            comp_deal(False)
         p_over_21 = check("player")
         comp_over_21 = check("computer")
     elif user == "s":
-        while total("computer") < total("player") and comp_over_21 == False:
-            print("Player:")
-            print(hands["player"])
+        while (total("computer") <= total("player")) and total("computer") < 21:
             comp_deal(False)
             p_over_21 = check("player")
             comp_over_21 = check("computer")
+        if not p_over_21 and not comp_over_21:
+            game_over = declare_winner()
 
 if comp_over_21 == True and p_over_21 == False:
     print("You Win!")
 elif comp_over_21 == True and p_over_21 == True:
-    print("You Lose!")
+    print("Draw! You Lose! The House ALWAYS Wins!")
 elif comp_over_21 == False and p_over_21 == True:
-    print("You Lose!")
+    print("BUST! You Lose!")
 
-# Need to make it so that if you stand, you can not continue hitting or standing
+print("Thank you for playing!")
+
+# adding the capability to take cards out that have been drawn is not hard at all. Track the drawn number and index to remove
