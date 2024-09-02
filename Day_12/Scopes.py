@@ -1,7 +1,7 @@
-enemies = 1
+enemies = 1 # one variable
 
 def increase_enemies():
-    enemies = 2
+    enemies = 2 # a new variable is created, the original enemies is not touched or modified
     print(f"enemies inside the function: {enemies}")
 
 increase_enemies()
@@ -32,5 +32,3 @@ def game():
 attack() 
 The attack function can be seen from outside of the game() function
 """
-
-game().attack()
