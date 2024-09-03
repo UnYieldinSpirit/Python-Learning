@@ -27,8 +27,6 @@ def game():
         damage = 2
         player_health -= damage
         print("Player has taken {damage} damage")
+    attack()
 
-"""
-attack() 
-The attack function can be seen from outside of the game() function
-"""
+game()
