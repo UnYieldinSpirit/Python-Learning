@@ -1,9 +1,16 @@
 import random
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10] # infinite deck, meaning that when a card is drawn, it is not removed from the card pool
+new_cards = [11, 11, 11, 11, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,]
 hands = {
     "player": [],
     "computer": [],
 }
+
+greeting = """Welcome to the BlackJack Table. The goal is to get as close as you can to 21 without exceeding. May the heart of the cards be with you.
+Aces are 11 or 1, depending on if you are over 21 or not.
+All face cards equal 10
+The number cards are just number cards
+          """
 
 def total(name):
     total = 0
@@ -17,7 +24,7 @@ def p_deal(first_deal):
     hands["player"].append(random.choice(cards))
     if first_deal:
         print("Player:")
-        print(f"{hands["player"]}  Total = {total("player")}")
+        print(f"{hands['player']} Total = {total('player')}")
 
 def comp_deal(first_deal):
     if first_deal == True:
@@ -25,20 +32,15 @@ def comp_deal(first_deal):
     hands["computer"].append(random.choice(cards))
     if first_deal:
         print("Computer:")
-        print(f"{hands["computer"]}  Total = {total("computer")}")
+        print(f"{hands['computer']}  Total = {total('computer')}")
 
 def initiate_game():
     first_deal = True
-    print("""Welcome to the BlackJack Table. The goal is to get as close as you can to 21 without exceeding. May the heart of the cards be with you.
-Aces are 11 or 1, depending on if you are over 21 or not.
-All face cards equal 10
-The number cards are just number cards
-          """)
+    print(greeting)
     hands["computer"] = []
     hands["player"] = []
     p_deal(first_deal)
     comp_deal(first_deal)
-
 
 def ace_convert(name): # used to change any number whose value is 11 to 1 if over 21
     index = hands[name].index(11)
