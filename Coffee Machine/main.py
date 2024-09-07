@@ -93,3 +93,8 @@ def print_resources():
 
 def ask_coins():
     print("test")
+
+# TODO - 1. finish ask_coins() function
+# TODO - 2. begin the implementation of the functions into the main logical handling function
+# TODO - 3. delete the blah.py that is used as a holder program
+# TODO - 4. remove the tempCodeRunnerFile.py
