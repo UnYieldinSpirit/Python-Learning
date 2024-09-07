@@ -43,6 +43,7 @@ def initiate_game():
     comp_deal(first_deal)
 
 def ace_convert(name): # used to change any number whose value is 11 to 1 if over 21
+    """changes any '11's in the hand to a '1' if over hand total is greater than 21"""
     index = hands[name].index(11)
     hands[name][index] = 1
     
