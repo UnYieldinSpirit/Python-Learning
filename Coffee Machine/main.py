@@ -58,17 +58,16 @@ def user_drink_check():
 
 def user_coin_check(coin):
     """ensures the user's inputs for coins are valid"""
-    if coin == "penny":
-        user = input(f"How many pennies:")
-    else:
-        user = input(f"How many {coin}s:")
-
-    if user.type() != int:
-        print("That is not a valid input")
+    try:
+        if coin == "penny":
+            user = int(input("How many pennies: "))
+        else:
+            user = int(input(f"How many {coin}s: "))
+    except ValueError:
+        print("That's not a valid number. Try again")
         user = user_coin_check(coin)
-        return user
-    else:
-        return user
+    return user
+
 
 def calculate_change(customer_payment, drink):
     """returns the change based on what the customer ordered and paid"""
@@ -92,8 +91,12 @@ def print_resources():
     print(f"Money: ${profit}")
 
 def ask_coins():
-    print("test")
+    """prompts the character to enter in the amount of coins that the user wants to use"""
+    for i in inserted_coins:
+        inserted_coins[i] = user_coin_check(i)
+    print(inserted_coins)
 
+ask_coins()
 # TODO - 1. finish ask_coins() function
 # TODO - 2. begin the implementation of the functions into the main logical handling function
 # TODO - 3. delete the blah.py that is used as a holder program
