@@ -68,10 +68,17 @@ def user_coin_check(coin):
         user = user_coin_check(coin)
     return user
 
+def calculate_user_payment():
+    """calculates the amount that the user paid from the coins entered"""
+    cash = 0
+    for i in inserted_coins:
+        cash += inserted_coins[i] * coins[i]
+    print(cash)
 
 def calculate_change(customer_payment, drink):
     """returns the change based on what the customer ordered and paid"""
     change = customer_payment - MENU[drink]['cost']
+    # maybe include an f-string
     return change
 
 def reduce_resources(drink):
@@ -94,10 +101,25 @@ def ask_coins():
     """prompts the character to enter in the amount of coins that the user wants to use"""
     for i in inserted_coins:
         inserted_coins[i] = user_coin_check(i)
-    print(inserted_coins)
 
+def valid_pay(pay, drink):
+    if pay < MENU[drink]["cost"]:
+        print("Not enough money")
+        return False
+    else:
+        return True
+    
+def main_function():
+    if user_drink_check() == "report":
+        print_resources()
+    else:
+        ask_coins()
+    
+    
 ask_coins()
-# TODO - 1. finish ask_coins() function
+calculate_user_payment()
+# TODO - 1. work on the main function that handles the logic (it is that important that it is referenced twice!)
 # TODO - 2. begin the implementation of the functions into the main logical handling function
 # TODO - 3. delete the blah.py that is used as a holder program
 # TODO - 4. remove the tempCodeRunnerFile.py
+"""REMEMBER - You got this"""
