@@ -1,3 +1,4 @@
+import math
 MENU = {
     "espresso": {
         "ingredients": {
@@ -45,6 +46,7 @@ inserted_coins = {
 }
 
 profit = 0
+drink = ""
 
 def user_drink_check():
     """ensures the user's inputs for drinks are valid"""
@@ -73,20 +75,24 @@ def calculate_user_payment():
     cash = 0
     for i in inserted_coins:
         cash += inserted_coins[i] * coins[i]
-    print(cash)
+    return cash
 
-def calculate_change(customer_payment, drink):
+def calculate_change(customer_payment):
     """returns the change based on what the customer ordered and paid"""
-    change = customer_payment - MENU[drink]['cost']
+    change = round(customer_payment - MENU[drink]['cost'], 2)
     # maybe include an f-string
+    increase_profit()
     return change
 
-def reduce_resources(drink):
+def increase_profit():
+    global profit
+    profit += MENU[drink]["cost"]
+    print("%.2f" % profit)
+
+def reduce_resources():
     """reduces the remaining resources in the coffee machine based on the selected drink"""
-    print(resources)
     for i in MENU[drink]["ingredients"]:
         resources[i] -= MENU[drink]["ingredients"][i]
-    print(resources)
     
 def print_resources():
     """prints the remaining resources in the coffee machine"""
@@ -97,27 +103,41 @@ def print_resources():
             print(f"{i}: {resources[i]}ml")            
     print(f"Money: ${profit}")
 
+def valid_resources():
+    """checks that there are enough resources"""
+    
+    
 def ask_coins():
     """prompts the character to enter in the amount of coins that the user wants to use"""
     for i in inserted_coins:
         inserted_coins[i] = user_coin_check(i)
 
-def valid_pay(pay, drink):
+def valid_pay(pay):
     if pay < MENU[drink]["cost"]:
         print("Not enough money")
         return False
     else:
         return True
-    
-def main_function():
-    if user_drink_check() == "report":
+
+def start_function():
+    global drink
+    drink = user_drink_check()
+    if drink == "report":
         print_resources()
+        start_function()
     else:
         ask_coins()
-    
-    
-ask_coins()
-calculate_user_payment()
+
+def second_function():
+    user_pay = calculate_user_payment()
+    if valid_pay(user_pay) and valid_resources():
+        reduce_resources()
+        print(f"Your change is ${calculate_change(user_pay)}")
+
+start_function()
+second_function()
+
+
 # TODO - 1. work on the main function that handles the logic (it is that important that it is referenced twice!)
 # TODO - 2. begin the implementation of the functions into the main logical handling function
 # TODO - 3. delete the blah.py that is used as a holder program
