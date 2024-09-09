@@ -1,4 +1,3 @@
-import math
 MENU = {
     "espresso": {
         "ingredients": {
@@ -84,6 +83,7 @@ def calculate_change(customer_payment):
     return change
 
 def increase_profit():
+    """modifies the overall profit that the coffee machine makes based on the drinks purchased"""
     global profit
     profit += MENU[drink]["cost"]
 
@@ -99,7 +99,13 @@ def print_resources():
             print(f"{i}: {resources[i]}g")
         else:
             print(f"{i}: {resources[i]}ml")            
-    print(f"Money: ${profit}")
+    print(f"Money: ${profit:.2f}")
+
+def print_menu():
+    """prints the menu so the user knows the price of the drinks"""
+    print("Here are the options and prices:")
+    for i in MENU:
+        print(f"{i.title()}: ${MENU[i]['cost']:.2f}")
 
 def valid_resources():
     """checks that there are enough resources"""
@@ -109,11 +115,6 @@ def valid_resources():
             return False
     return True
 
-def ask_coins():
-    """prompts the character to enter in the amount of coins that the user wants to use"""
-    for i in inserted_coins:
-        inserted_coins[i] = user_coin_check(i)
-
 def valid_pay(pay):
     """checks that the amount that the user input was enough to cover the amount that the drink they ordered costs"""
     if pay < MENU[drink]["cost"]:
@@ -122,26 +123,30 @@ def valid_pay(pay):
     else:
         return True
 
-def starter():
-    global drink
+def ask_coins():
+    """prompts the character to enter in the amount of coins that the user wants to use"""
+    for i in inserted_coins:
+        inserted_coins[i] = user_coin_check(i)
+
+def main():
+    """main function that handles the operations necessary of the coffee machine"""
+    global drink 
     drink = user_drink_check()
     if drink == "report":
         print_resources()
-        starter()
+        main()
     elif drink == "quit":
         print("Thanks for ordering from the machine")
     else:
         ask_coins()
-        background_logic()
+        user_pay = calculate_user_payment()
+        if valid_pay(user_pay) == True and valid_resources() == True: # if the user's pay is enough to cover the drink and there are enough resources to make the drink, this runs
+            reduce_resources()
+            print(f"Your change is ${calculate_change(user_pay):.2f}")
+            print(f"Here is your {drink}!")
+        main()
 
-def background_logic():
-    user_pay = calculate_user_payment()
-    if valid_pay(user_pay) == True and valid_resources() == True:
-        reduce_resources()
-        print(f"Your change is ${calculate_change(user_pay)}")
-        print(f"Here is your {drink}!")
-    starter()
-
-starter()
+print_menu()
+main()
 
 """REMEMBER - You got this"""
