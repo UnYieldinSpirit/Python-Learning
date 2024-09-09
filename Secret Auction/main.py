@@ -1,8 +1,8 @@
-import AuctionGavel
+import art
 
 # program used to conduct a secret auction
 
-print(AuctionGavel.logo)
+print(art.logo)
 print("Welcome to the Secret Auction!")
 
 auctions = {}
