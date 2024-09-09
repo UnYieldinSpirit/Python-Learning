@@ -51,7 +51,7 @@ drink = ""
 def user_drink_check():
     """ensures the user's inputs for drinks are valid"""
     user = input("What would you like? (latte/ cappuccino/ espresso) ").lower()
-    if user != 'latte' and user != 'cappuccino' and user != 'espresso' and user != 'report':
+    if user != 'latte' and user != 'cappuccino' and user != 'espresso' and user != 'report' and user != 'quit':
         print("That is not a valid choice")
         user = user_drink_check()
         return user
@@ -80,14 +80,12 @@ def calculate_user_payment():
 def calculate_change(customer_payment):
     """returns the change based on what the customer ordered and paid"""
     change = round(customer_payment - MENU[drink]['cost'], 2)
-    # maybe include an f-string
     increase_profit()
     return change
 
 def increase_profit():
     global profit
     profit += MENU[drink]["cost"]
-    print("%.2f" % profit)
 
 def reduce_resources():
     """reduces the remaining resources in the coffee machine based on the selected drink"""
@@ -105,41 +103,45 @@ def print_resources():
 
 def valid_resources():
     """checks that there are enough resources"""
-    
-    
+    for i in MENU[drink]["ingredients"]:
+        if resources[i] < MENU[drink]["ingredients"][i]:
+            print(f"Not enough resources to make your {drink}")
+            return False
+    return True
+
 def ask_coins():
     """prompts the character to enter in the amount of coins that the user wants to use"""
     for i in inserted_coins:
         inserted_coins[i] = user_coin_check(i)
 
 def valid_pay(pay):
+    """checks that the amount that the user input was enough to cover the amount that the drink they ordered costs"""
     if pay < MENU[drink]["cost"]:
         print("Not enough money")
         return False
     else:
         return True
 
-def start_function():
+def starter():
     global drink
     drink = user_drink_check()
     if drink == "report":
         print_resources()
-        start_function()
+        starter()
+    elif drink == "quit":
+        print("Thanks for ordering from the machine")
     else:
         ask_coins()
+        background_logic()
 
-def second_function():
+def background_logic():
     user_pay = calculate_user_payment()
-    if valid_pay(user_pay) and valid_resources():
+    if valid_pay(user_pay) == True and valid_resources() == True:
         reduce_resources()
         print(f"Your change is ${calculate_change(user_pay)}")
+        print(f"Here is your {drink}!")
+    starter()
 
-start_function()
-second_function()
+starter()
 
-
-# TODO - 1. work on the main function that handles the logic (it is that important that it is referenced twice!)
-# TODO - 2. begin the implementation of the functions into the main logical handling function
-# TODO - 3. delete the blah.py that is used as a holder program
-# TODO - 4. remove the tempCodeRunnerFile.py
 """REMEMBER - You got this"""
