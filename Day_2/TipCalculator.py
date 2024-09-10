@@ -1,8 +1,3 @@
-# Tip Calculator
-# What was the total bill
-# How much tip, 10, 12 or 15%?
-# How many people to split the bill?
-# Final result: Each person should pay: output number
 print("Welcome to the tip calculator!")
 initial_bill = float(input("What was the total bill?'\n"))
 initial_bill = round(initial_bill, 2)

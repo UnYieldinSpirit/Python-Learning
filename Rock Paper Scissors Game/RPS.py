@@ -35,7 +35,6 @@ choices = [rock, paper, scissors]
 
 # player_choice = int(input("Welcome to Rock, Paper, Scissors! Type 0 for Rock, 1 for Paper, and 2 for Scissors: "))
 
-
 play_again = True
 
 while play_again == True:
@@ -86,4 +85,3 @@ while play_again == True:
         play_again = False
     else:
         play_again = True
-    
