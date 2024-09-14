@@ -8,5 +8,10 @@ for key in data.question_data:
     new_question = question_model.Question(key["text"], key["answer"])
     question_bank.append(new_question)
 
-quizbrain = quiz_brain.QuizBrain(question_bank)
-quizbrain.next_question()
+brain = quiz_brain.QuizBrain(question_bank)
+
+while brain.quiz_end_check() != True:
+    brain.next_question()
+
+print("You completed the quiz")
+print(f"Here is your final score: {brain.number_correct}/{brain.question_number}")
