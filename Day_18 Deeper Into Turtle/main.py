@@ -98,17 +98,20 @@ def draw_shape(num_of_sides, size):
 
 def rand_walk(size):
     timmy.pensize(10)
+    timmy.speed("fastest")
     for i in range(rand.randint(0, 100)):
         timmy.color(rand.choice(colors))
         timmy.forward(size)
         timmy.right(rand.choice(turns))
 
-rand_walk(50)
+rand_walk(30)
 
 print(heroes.gen())
 
 # for shape_side in range(3, 11):
 #     draw_shape(shape_side, 100)
+
+# TODO - Create and manage tuples
 
 screen = Screen()
 screen.exitonclick()
