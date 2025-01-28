@@ -27,4 +27,4 @@ class QuizBrain():
         print("\n")
 
     def quiz_end_check(self):
-        return self.question_number == len(self.questions_list)
+        return self.question_number == len(self.questions_list)             
