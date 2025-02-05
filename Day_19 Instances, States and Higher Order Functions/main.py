@@ -16,9 +16,10 @@ def rotate_counter_clockwise():
     timmy.left(5)
 
 def clear():
-    timmy.setposition(x = 0, y = 0)
-    timmy.setheading(0)
-    screen.clearscreen() # DOESN'T WORK
+    # timmy.setposition(x = 0, y = 0)
+    # timmy.setheading(0)
+    # screen.clearscreen()
+    timmy.reset()
 
 screen.listen()
 
