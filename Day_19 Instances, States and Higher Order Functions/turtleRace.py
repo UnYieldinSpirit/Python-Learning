@@ -1,4 +1,5 @@
 from turtle import Turtle, Screen
+import random as random
 
 screen = Screen()
 screen.setup(width = 500, height = 400)
@@ -7,6 +8,9 @@ screen.setup(width = 500, height = 400)
 color_list = ["red", "orange", "yellow", "green", "blue", "purple"]
 turtle_list = []
 
+y_position = -100
+
+finish = False
 
 def setup(turtle, y_position, color):
     turtle = Turtle()
@@ -16,18 +20,35 @@ def setup(turtle, y_position, color):
     turtle.goto(x = -250, y = y_position)
     turtle_list.append(turtle)
 
-def check_winnings(bet, winning_turtle):
+def race(list):
+    global finish
+
+    while finish == False:
+        list[random.randint(0, len(list) - 1)].forward(random.randint(a = 1, b = 5))
+        for i in turtle_list:
+            finish = check(i)
+
+def check(turtle):
+    '''Checks to see if an turtle has been crossed the finish line'''
+    if turtle.xcor() >= 250:
+        return True
+    else:
+        return False
+
+def check_winnings(bet, winning_turtle): #FIX THIS, THIS IS THE FINAL PORTION
     if user_bet == winning_turtle.color:
         print("You win!")
     else:
         print("You Lose")
 
-j = -100
-lift = 0
-
 for i in color_list:
-    setup(turtle = i, y_position = j, color = i)
-    j += 40
+    setup(turtle = i, y_position = y_position, color = i)
+    y_position += 40
+
+race(turtle_list)
+
+# mayo
+# sriracha
 
 screen.exitonclick()
 
