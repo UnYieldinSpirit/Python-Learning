@@ -3,7 +3,7 @@ import random as random
 
 screen = Screen()
 screen.setup(width = 500, height = 400)
-# user_bet = screen.textinput(title = "Make Your Bet", prompt = "Which turtle will win the race? Enter a color: ")
+user_bet = screen.textinput(title = "Make Your Bet", prompt = "Which turtle will win the race? Enter a color: ")
 
 color_list = ["red", "orange", "yellow", "green", "blue", "purple"]
 turtle_list = []
@@ -22,24 +22,30 @@ def setup(turtle, y_position, color):
 
 def race(list):
     global finish
-
     while finish == False:
-        list[random.randint(0, len(list) - 1)].forward(random.randint(a = 1, b = 5))
+        list[random.randint(0, len(list) - 1)].forward(random.randint(a = 5, b = 10))
         for i in turtle_list:
             finish = check(i)
+            if finish == True:
+                break
+    check_winnings(user_bet, winner)
 
 def check(turtle):
-    '''Checks to see if an turtle has been crossed the finish line'''
-    if turtle.xcor() >= 250:
+    '''Checks to see if a turtle has crossed the finish line'''
+    global winner
+    if turtle.xcor() >= 225:
+        winner = turtle
         return True
     else:
         return False
 
 def check_winnings(bet, winning_turtle): #FIX THIS, THIS IS THE FINAL PORTION
-    if user_bet == winning_turtle.color:
-        print("You win!")
+    if bet == winning_turtle.fillcolor():
+        print("RIGHT!")
     else:
-        print("You Lose")
+        print("COULD YOU BE ANYMORE WRONG...")
+    print(bet)
+    print(winning_turtle.fillcolor())
 
 for i in color_list:
     setup(turtle = i, y_position = y_position, color = i)
