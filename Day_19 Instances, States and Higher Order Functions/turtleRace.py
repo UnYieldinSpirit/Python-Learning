@@ -54,10 +54,4 @@ race(turtle_list)
 # mayo
 # sriracha
 
-screen.exitonclick()
-
-# TODO - Make 6 turtles line up on the left side of the screen
-# TODO - Each turtle should be a different color - red, orange, yellow, green, blue, purple 
-# TODO - Race forward at random increments
-# TODO - Store the winner
-# TODO - Compare winner to guess 
+screen.exitonclick(
