@@ -23,7 +23,7 @@ def setup(turtle, y_position, color):
 def race(list):
     global finish
     while finish == False:
-        list[random.randint(0, len(list) - 1)].forward(random.randint(a = 5, b = 10))
+        list[random.randint(0, len(list) - 1)].forward(random.randint(a = 1, b = 5))
         for i in turtle_list:
             finish = check(i)
             if finish == True:
@@ -44,8 +44,6 @@ def check_winnings(bet, winning_turtle): #FIX THIS, THIS IS THE FINAL PORTION
         print("RIGHT!")
     else:
         print("COULD YOU BE ANYMORE WRONG...")
-    print(bet)
-    print(winning_turtle.fillcolor())
 
 for i in color_list:
     setup(turtle = i, y_position = y_position, color = i)
