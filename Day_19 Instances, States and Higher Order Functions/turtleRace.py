@@ -54,4 +54,4 @@ race(turtle_list)
 # mayo
 # sriracha
 
-screen.exitonclick(
+screen.exitonclick()
