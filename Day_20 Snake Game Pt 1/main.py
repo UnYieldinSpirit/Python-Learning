@@ -8,17 +8,12 @@ screen.title("Snaked Up")
 # set three turtles to squares in a row, 1st at (0,0)
 
 snake_body = []
+starting_positions = [(0, 0), (-20, 0), (-40, 0)]
 
-def setup():
-    x_coordinate = 0
-    for i in range(0, 3):
-        turtle = Turtle()
-        turtle.color("white")
-        turtle.shape("square")
-        turtle.turtlesize()
-        turtle.setx(x_coordinate)
-        x_coordinate -= 20
-        snake_body.append(turtle)
+for position in starting_positions:
+    turtle = Turtle("square")
+    turtle.color("white")
+    turtle.goto(position)
+    snake_body.append(turtle)
 
-setup()
 screen.exitonclick()
