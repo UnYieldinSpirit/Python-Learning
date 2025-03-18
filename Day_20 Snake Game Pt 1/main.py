@@ -1,9 +1,11 @@
 from turtle import Turtle, Screen
+import time
 
 screen = Screen()
 screen.setup(width = 600, height = 600)
 screen.bgcolor("black")
 screen.title("Snaked Up")
+screen.tracer(0)
 
 # set three turtles to squares in a row, 1st at (0,0)
 
@@ -17,31 +19,20 @@ for position in starting_positions:
     turtle.color("white")
     turtle.goto(position)
     snake_body.append(turtle)
+screen.update()
 
-def move():
-    for i in snake_body:
-        i.forward(5)
+game_is_on = True
 
-def north():
-    for i in snake_body:
-        i.setheading("north")
+while game_is_on == True:
+    screen.update()
+    time.sleep(0.5)
 
-def east():
-    for i in snake_body:
-        i.setheading("east")
+    for segment in range(len(snake_body) - 1, 0, -1):
+        x_coor = snake_body[segment - 1].xcor()
+        y_coor = snake_body[segment - 1].ycor()
+        snake_body[segment].goto(x_coor, y_coor)
+    snake_body[0].forward(20)
 
-def south():
-    for i in snake_body:
-        i.setheading("south")
-
-def west():
-    for i in snake_body:
-        i.setheading("west")
-
-
-screen.onkey(key = "Up", fun = north)
-screen.onkey(key = "Left", fun = west)
-screen.onkey(key = "Right", fun = east)
-screen.onkey(key = "Down", fun = south)
+# Have the current segment save it position and then have the previous segment assume that location.
 
 screen.exitonclick()
