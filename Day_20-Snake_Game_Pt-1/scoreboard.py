@@ -16,5 +16,11 @@ class Score(Turtle):
         self.score += 1
 
     def rewrite(self):
+        """Updates the score displayed on the screen"""
         self.clear()
         self.write(f"Score: {self.score}", font = ('Arial', 40, "normal"))
+
+    def game_over(self):
+        self.clear()
+        self.goto(0, 0)
+        self.write(f"GAME OVER - FINAL SCORE: {self.score}", font = ('Comic Sans', 30, 'normal'), align = 'center')

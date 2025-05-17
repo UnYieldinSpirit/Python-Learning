@@ -1,6 +1,6 @@
 from turtle import Turtle
 
-#prolly best to make these a constant as they will NEVER change and are integral to the functioning of the game
+# prolly best to make these a constant as they will NEVER change and are integral to the functioning of the game
 STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
 MOVE_DISTANCE = 20
 RIGHT = 0

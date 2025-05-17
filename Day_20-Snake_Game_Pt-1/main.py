@@ -17,7 +17,7 @@ scoreboard = Score()
 game_is_on = True
 while game_is_on:
     screen.update()
-    time.sleep(0.1)
+    time.sleep(0.08)
 
     snake.move()
     
@@ -27,6 +27,7 @@ while game_is_on:
     screen.onkey(snake.down,"Down")
     screen.onkey(snake.right,"Right")
     screen.onkey(snake.left,"Left")
+    # screen.onkey(pause, "Space")
 
     # if snake.return_distance(food.return_position()) <= 10:
     #     snake.add_segment()
@@ -37,5 +38,9 @@ while game_is_on:
         food.new_location()
         scoreboard.increase_score()
         scoreboard.rewrite()
+    
+    if ((snake.head.xcor() == -300 or snake.head.xcor() == 300) or (snake.head.ycor() == -300 or snake.head.ycor() == 300)):
+        game_is_on = False
+        scoreboard.game_over()
 
 screen.exitonclick()
