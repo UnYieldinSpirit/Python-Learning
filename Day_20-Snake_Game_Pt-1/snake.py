@@ -23,6 +23,13 @@ class Snake:
             turtle.goto(position)
             self.snake_body.append(turtle)
 
+    def add_segment(self):
+            turtle = Turtle("square")
+            turtle.penup()
+            turtle.color("white")
+            turtle.goto(self.snake_body[-1].position())
+            self.snake_body.append(turtle)
+
     def move(self):
         for segment in range(len(self.snake_body) -1, 0, -1):
             x_coor = self.snake_body[segment - 1].xcor()
@@ -37,8 +44,7 @@ class Snake:
             self.reset_top()
         if(self.head.ycor() > 300):
             self.reset_bottom()
-        # print(self.head.position())
-    
+
     def reset_right(self):
         y_coor = self.head.ycor()
         x_coor = 300
@@ -73,4 +79,8 @@ class Snake:
 
     def down(self):
         if (self.head.heading() != UP):
-            self.head.setheading(DOWN)       
+            self.head.setheading(DOWN)
+
+    def return_distance(self, food_position):
+        print(self.head.distance(food_position))
+        return self.head.distance(food_position)
