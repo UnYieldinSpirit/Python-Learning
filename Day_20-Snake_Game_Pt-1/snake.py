@@ -16,71 +16,46 @@ class Snake:
         self.head = self.snake_body[0]
 
     def create_body(self):
+        '''Initial creation of the snake's body'''
         for position in STARTING_POSITIONS:
-            turtle = Turtle("square")
-            turtle.penup()
-            turtle.color("white")
-            turtle.goto(position)
-            self.snake_body.append(turtle)
+            self.add_segment(position)
 
-    def add_segment(self):
-            turtle = Turtle("square")
-            turtle.penup()
-            turtle.color("white")
-            turtle.goto(self.snake_body[-1].position())
-            self.snake_body.append(turtle)
+    def add_segment(self, position):
+        '''Adding a segment to the end of the snake body'''
+        turtle = Turtle("square")
+        turtle.penup()
+        turtle.color("white")
+        turtle.goto(position)
+        self.snake_body.append(turtle)
+
+    def extend(self):
+        '''Increases the snake body by one segment on the tail end of the snake'''
+        self.add_segment(self.snake_body[-1].position())
 
     def move(self):
+        '''Manages the movement of the snake, moving the head first and having each segment of the body follow suit'''
         for segment in range(len(self.snake_body) -1, 0, -1):
             x_coor = self.snake_body[segment - 1].xcor()
             y_coor = self.snake_body[segment - 1].ycor()
             self.snake_body[segment].goto(x_coor, y_coor)
         self.head.forward(MOVE_DISTANCE)
-        if(self.head.xcor() < -300):
-            self.reset_right()
-        if(self.head.xcor() > 300):
-            self.reset_left()
-        if(self.head.ycor() < -300):
-            self.reset_top()
-        if(self.head.ycor() > 300):
-            self.reset_bottom()
-
-    def reset_right(self):
-        y_coor = self.head.ycor()
-        x_coor = 300
-        self.head.goto(x_coor, y_coor)
-
-    def reset_left(self):
-        y_coor = self.head.ycor()
-        x_coor = -300
-        self.head.goto(x_coor, y_coor)        
-
-    def reset_top(self):
-        y_coor = 300
-        x_coor = self.head.xcor()
-        self.head.goto(x_coor, y_coor)
-
-    def reset_bottom(self):
-        y_coor = -300
-        x_coor = self.head.xcor()
-        self.head.goto(x_coor, y_coor)
 
     def right(self):
+        '''Changes the movement direction of the snake right'''
         if (self.head.heading() != LEFT):
             self.head.setheading(RIGHT)
 
     def up(self):
+        '''Changes the movement direction of the snake up'''
         if (self.head.heading() != DOWN):
             self.head.setheading(UP)
 
     def left(self):
+        '''Changes the movement direction of the snake left'''
         if (self.head.heading() != RIGHT):
             self.head.setheading(LEFT)
 
     def down(self):
+        '''Changes the movement direction of the snake down'''
         if (self.head.heading() != UP):
             self.head.setheading(DOWN)
-
-    def return_distance(self, food_position):
-        print(self.head.distance(food_position))
-        return self.head.distance(food_position)
