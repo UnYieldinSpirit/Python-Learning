@@ -1,0 +1,6 @@
+Necessities:
+Manueverable paddles - prevent paddle from going too high or too low
+Ball that bounces when hitting paddles
+
+Aesthetics:
+Center Dashed Line
