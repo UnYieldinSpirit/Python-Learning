@@ -1,22 +1,26 @@
 from turtle import Turtle
-from turtle import Screen
-from turtle import Shape
-
-shape = Shape
 
 RECTCOORS = ((-20,10),(20,10),(20,-10),(-20,-10))
+UP = 90
+DOWN = 270
+MOVE_SPEED = 20
 
-class Paddle:
+class Paddle(Turtle):
 
     def __init__(self, position):
+        super().__init__()
         self.position = position
-        self.paddle = self.create_paddle()
+        self.penup()
+        self.color("white")
+        self.goto(self.position)
+        self.shape("square")
+        self.shapesize(stretch_len = 5, stretch_wid = 2)
+        self.setheading(UP)
 
-    def create_paddle(self):
-        turtle = Turtle
-        turtle.penup()
-        turtle.color("white")
-        turtle.goto(self.position)
-        turtle.shape("square")
-        turtle.shapesize(stretch_len = 5, stretch_wid = 2)
-        return turtle
+    def up(self):
+        self.setheading(UP)
+        self.forward(MOVE_SPEED)
+
+    def down(self):
+        self.setheading(DOWN)
+        self.forward(MOVE_SPEED)
