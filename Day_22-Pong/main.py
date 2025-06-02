@@ -52,6 +52,12 @@ while game_is_on:
     if (ball.distance(player_1) <= 20) or (ball.distance(player_2) <= 20):
         ball.paddle_bounce() 
 
-    screen.onkey(scoreboard.increase_left, "e")
-
+    print(ball.xcor())
+    if ball.xcor() <= -600:
+        scoreboard.increase_score("right")
+        ball.reset()
+    if ball.xcor() >= 600:
+        scoreboard.increase_score("left")
+        ball.reset()
+        
 screen.exitonclick()

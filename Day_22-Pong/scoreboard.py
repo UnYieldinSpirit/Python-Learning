@@ -21,10 +21,6 @@ class Scoreboard(Turtle):
             self.left_score += 1
         elif side == "left":
             self.right_score += 1
-
-    def increase_left(self):
-        '''Test'''
-        self.left_score += 1
         self.rewrite()
 
     def rewrite(self):

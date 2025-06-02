@@ -16,7 +16,7 @@ class Ball(Turtle):
         self.y_move = 10
     
     def reset(self):
-        self.ball.home(0, 0)
+        self.home()
 
     def move(self):
         new_xcor = self.xcor() + self.x_move
