@@ -1,5 +1,6 @@
 from turtle import Turtle
 
+MOVE_SPEED = 10
 RIGHT = 0
 UP = 90
 LEFT = 180
@@ -12,11 +13,13 @@ class Ball(Turtle):
         self.penup()
         self.color("white")
         self.home()
-        self.x_move = 10
-        self.y_move = 10
+        self.x_move = MOVE_SPEED
+        self.y_move = MOVE_SPEED
+        self.move_speed = 0.1
     
     def reset(self):
         self.home()
+        self.move_speed = 0.1
 
     def move(self):
         new_xcor = self.xcor() + self.x_move
@@ -25,6 +28,8 @@ class Ball(Turtle):
 
     def wall_bounce(self):
         self.y_move *= -1
+        self.move_speed *= 0.9
 
     def paddle_bounce(self):
         self.x_move *= -1
+        self.move_speed *= 0.9

@@ -17,9 +17,9 @@ class Scoreboard(Turtle):
     
     def increase_score(self, side):
         '''Update the score displayed depending on which side the ball ends the round (opposite-ish)'''
-        if side == "right":
+        if side == "left":
             self.left_score += 1
-        elif side == "left":
+        elif side == "right":
             self.right_score += 1
         self.rewrite()
 
@@ -31,9 +31,8 @@ class Scoreboard(Turtle):
         self.goto(400, 200)
         self.write(f"{self.right_score}", font = ('ArcadeClassic', 90, "normal"), align = "center")
 
-    def game_over(self):
+    def game_over(self, winner):
         self.clear()
-        self.goto(0)
-        self.write("Game Over")
-
+        self.goto(0, 0)
+        self.write(f"{winner} WINS", font = ('ArcadeClassic', 90, "normal"), align = "center")
     

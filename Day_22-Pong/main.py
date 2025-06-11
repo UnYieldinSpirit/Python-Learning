@@ -19,7 +19,7 @@ game_is_on = True
 
 while game_is_on:
     screen.update()
-    time.sleep(0.09)
+    time.sleep(ball.move_speed)
 
     ball.move()
     screen.listen()
@@ -42,22 +42,38 @@ while game_is_on:
     screen.onkey(player_1.up, "w")
 
     # player 2 controls
-    screen.onkey(player_2.up, "Up")
     screen.onkey(player_2.down, "Down")
+    screen.onkey(player_2.up, "Up")
 
     # ceiling detection and bounce
     if ball.ycor() >= 290 or ball.ycor() <= -290:
         ball.wall_bounce()
-    
-    if (ball.distance(player_1) <= 20) or (ball.distance(player_2) <= 20):
-        ball.paddle_bounce() 
 
-    print(ball.xcor())
+    # paddle detection and bounce
+    # if (ball.distance(player_1) <= 20) or (ball.distance(player_2) <= 20):
+    #     ball.paddle_bounce()
+    
+    if ((ball.distance(player_1) <= 25) and (ball.xcor() <= -555)):
+        ball.paddle_bounce()
+
+    if ((ball.distance(player_2) <= 25) and (ball.xcor() >= 515)):
+        ball.paddle_bounce()
+
+    # scoring mechanisms
     if ball.xcor() <= -600:
-        scoreboard.increase_score("right")
+        scoreboard.increase_score("right") 
         ball.reset()
     if ball.xcor() >= 600:
         scoreboard.increase_score("left")
         ball.reset()
-        
+
+    # game ending mechanic
+    if scoreboard.right_score == 5:
+        scoreboard.game_over("RIGHT")
+        game_is_on = False
+
+    if scoreboard.left_score == 5:
+        scoreboard.game_over("LEFT")
+        game_is_on = False
+
 screen.exitonclick()
