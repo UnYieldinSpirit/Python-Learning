@@ -18,9 +18,11 @@ class Paddle(Turtle):
         self.setheading(UP)
 
     def up(self):
+        '''Handles the movement of the paddle upwards'''
         self.setheading(UP)
         self.forward(MOVE_SPEED)
 
     def down(self):
+        '''Handles the movement of the paddle upwards'''
         self.setheading(DOWN)
         self.forward(MOVE_SPEED)

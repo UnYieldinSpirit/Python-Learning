@@ -32,6 +32,7 @@ class Scoreboard(Turtle):
         self.write(f"{self.right_score}", font = ('ArcadeClassic', 90, "normal"), align = "center")
 
     def game_over(self, winner):
+        '''Handles the printing of the Game Over screen and declares which side won'''
         self.clear()
         self.goto(0, 0)
         self.write(f"{winner} WINS", font = ('ArcadeClassic', 90, "normal"), align = "center")

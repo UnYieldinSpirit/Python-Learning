@@ -12,6 +12,8 @@ screen.title("My Pong Game")
 screen.tracer(0)
 
 scoreboard = Scoreboard()
+
+# Creates the two paddles on the ends of the screen/play area
 player_1 = Paddle((-575, 200))
 player_2 = Paddle((575, 200))
 
@@ -19,6 +21,8 @@ game_is_on = True
 
 while game_is_on:
     screen.update()
+
+    # time is set to the ball move speed that constantly increases with each bounce to make the game increase in difficulty as the game progresses
     time.sleep(ball.move_speed)
 
     ball.move()

@@ -18,18 +18,22 @@ class Ball(Turtle):
         self.move_speed = 0.1
     
     def reset(self):
+        '''Resets the ball back to the original center point of the play area'''
         self.home()
         self.move_speed = 0.1
 
     def move(self):
+        '''Handles the movement of the ball'''
         new_xcor = self.xcor() + self.x_move
         new_ycor = self.ycor() + self.y_move        
         self.goto(new_xcor, new_ycor)
 
     def wall_bounce(self):
+        '''Handles the bouncing of the ball off of the walls'''
         self.y_move *= -1
         self.move_speed *= 0.9
 
     def paddle_bounce(self):
+        '''Handles the bouncing of the ball off of the paddles'''
         self.x_move *= -1
         self.move_speed *= 0.9
