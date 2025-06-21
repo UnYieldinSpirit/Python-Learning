@@ -21,8 +21,7 @@ while game_is_on:
     screen.update()
     screen.listen()
 
-    if (loop % 5) == 0:
-        manager.gen_car()
+    manager.gen_car()
 
     for car in manager.cars_on_screen:
         if car.xcor() >= -300:
@@ -40,8 +39,7 @@ while game_is_on:
 
     # collision detection
     for car in manager.cars_on_screen:
-        if car.distance(player) <= 15:
+        if car.distance(player) <= 20:
             game_is_on = False
             score.game_over()
-
-    loop += 1
+            screen.exitonclick()

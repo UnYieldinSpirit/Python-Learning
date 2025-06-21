@@ -1,4 +1,6 @@
 FONT = ("Courier", 24, "normal")
+FONT_2 = ("Courier", 32, "normal")
+
 from turtle import Turtle
 
 class Scoreboard(Turtle):
@@ -28,7 +30,6 @@ class Scoreboard(Turtle):
         '''Handles the printing of the Game Over screen'''
         self.clear()
         self.goto(0, 0)
-        self.write(f"GAME OVER", align = "center")
+        self.write(f"GAME OVER", font = FONT_2, align = "center")
         self.goto(0, -100)
-        self.write(f"Level: {self.level}", font = FONT, align = "center")
-    
+        self.write(f"Level: {self.level}", font = FONT_2, align = "center")

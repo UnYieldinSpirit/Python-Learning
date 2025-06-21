@@ -11,8 +11,10 @@ class CarManager():
         self.move_speed = STARTING_MOVE_DISTANCE
 
     def gen_car(self):
-        new_car = Car((300, randint(-260, 260)), choice(COLORS))
-        self.cars_on_screen.append(new_car)
+        random_chance = randint(1, 6)
+        if random_chance < 3:
+            new_car = Car((300, randint(-260, 260)), choice(COLORS))
+            self.cars_on_screen.append(new_car)
 
     def forward(self):
         for car in self.cars_on_screen:
@@ -23,5 +25,3 @@ class CarManager():
  
     def __del__(self):
         pass
-
-# TODO - Despawn after certain x coordinate - use 'del' function
