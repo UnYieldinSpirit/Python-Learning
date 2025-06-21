@@ -1,6 +1,5 @@
 from turtle import Turtle
 
-RECTCOORS = ((-20,10),(20,10),(20,-10),(-20,-10))
 UP = 90
 DOWN = 270
 MOVE_SPEED = 20
