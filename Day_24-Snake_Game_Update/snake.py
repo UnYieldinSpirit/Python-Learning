@@ -28,6 +28,13 @@ class Snake:
         turtle.goto(position)
         self.snake_body.append(turtle)
 
+    def reset(self):
+        for segment in self.snake_body:
+            segment.goto(1000,1000)
+        self.snake_body.clear()
+        self.create_body()
+        self.head = self.snake_body[0]
+
     def extend(self):
         '''Increases the snake body by one segment on the tail end of the snake'''
         self.add_segment(self.snake_body[-1].position())
