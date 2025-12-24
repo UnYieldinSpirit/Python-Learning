@@ -1,4 +1,6 @@
 from turtle import Turtle
+FONT = ('Courier', 24, 'normal')
+ALIGNMENT = 'center'
 
 class Scoreboard(Turtle):
     
@@ -7,10 +9,12 @@ class Scoreboard(Turtle):
         self.pencolor("white")
         self.penup()
         self.pensize()
-        self.goto(-120, 200)
+        self.goto(0, 260)
         self.hideturtle()
         self.score = 0
-        self.write(f"Score: {self.score}", font = ('Arial', 40, "normal"))
+        with open('data.txt') as file:
+            self.high_score = int(file.read())
+        self.rewrite()
 
     def increase_score(self):
         '''Increases the user's score by one whenever the user collects a food pellet'''
@@ -19,10 +23,12 @@ class Scoreboard(Turtle):
     def rewrite(self):
         '''Updates the score displayed on the screen'''
         self.clear()
-        self.write(f"Score: {self.score}", font = ('Arial', 40, "normal"))
+        if self.score > self.high_score:
+            self.high_score = self.score
+        self.write(f"Score: {self.score} Hi-Score: {self.high_score}", font = FONT, align = ALIGNMENT)
 
-    def game_over(self):
-        '''Ends the game'''
-        self.clear()
-        self.goto(0, 0)
-        self.write(f"GAME OVER - FINAL SCORE: {self.score}", font = ('Comic Sans', 30, 'normal'), align = 'center')
+    def reset(self):
+        with open("data.txt", mode = "w") as file:
+            file.write(str(self.high_score))
+        self.score = 0
+        self.rewrite()

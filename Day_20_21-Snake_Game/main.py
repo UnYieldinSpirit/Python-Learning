@@ -17,7 +17,7 @@ scoreboard = Scoreboard()
 game_is_on = True
 while game_is_on:
     screen.update()
-    time.sleep(0.09)
+    time.sleep(0.1)
 
     snake.move()
     
@@ -37,20 +37,14 @@ while game_is_on:
         scoreboard.rewrite()
     
     # detect collision with wall
-    if ((snake.head.xcor() == -300 or snake.head.xcor() == 300) or (snake.head.ycor() == -300 or snake.head.ycor() == 300)):
-        game_is_on = False
-        scoreboard.game_over()
-
-    # detect collision with other segments
-    # for segment in range(len(snake.snake_body) -1, 1, -1):
-    #     if snake.head.distance(snake.snake_body[segment]) <= 10:
-    #         game_is_on  = False
-    #         scoreboard.game_over()
+    if (snake.head.xcor() < -280 or snake.head.xcor() > 280 or snake.head.ycor() > 280 or snake.head.ycor() < -280):
+        scoreboard.reset()
+        snake.reset()
 
     # detect collision with other segments
     for segment in snake.snake_body[1:]:
         if snake.head.distance(segment) <= 10:
-            game_is_on  = False
-            scoreboard.game_over()
+            scoreboard.reset()
+            snake.reset()
             
 screen.exitonclick()
